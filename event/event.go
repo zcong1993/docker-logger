@@ -1,52 +1,42 @@
 package event
 
+// LogEvent is struct of log event stream event
 type LogEvent struct {
 	ContainerId   string
 	ContainerName string
-	Labels        map[string]string
 	Log           string
 	LogLevel      string
 }
 
+// EventStream is struct of event stream
 type EventStream struct {
-	ch            chan *LogEvent
+	Ch            chan LogEvent
 	ContainerId   string
 	ContainerName string
-	Labels        map[string]string
 	LogLevel      string
 }
 
-func NewEventStream(ContainerId string, ContainerName string, Labels map[string]string, LogLevel string) *EventStream {
-	ch := make(chan *LogEvent)
+// NewEventStream is constructor of event stream
+func NewEventStream(ContainerId string, ContainerName string, LogLevel string, Ch chan LogEvent) *EventStream {
 	return &EventStream{
 		ContainerId:   ContainerId,
 		ContainerName: ContainerName,
-		Labels:        Labels,
 		LogLevel:      LogLevel,
-		ch:            ch,
+		Ch:            Ch,
 	}
 }
 
-func (es *EventStream) GetChannel() chan *LogEvent {
-	return es.ch
-}
-
-func (es *EventStream) newLogEvent(b []byte) *LogEvent {
-	return &LogEvent{
+func (es *EventStream) newLogEvent(b []byte) LogEvent {
+	return LogEvent{
 		ContainerId:   es.ContainerId,
 		ContainerName: es.ContainerName,
-		Labels:        es.Labels,
 		LogLevel:      es.LogLevel,
 		Log:           string(b),
 	}
 }
 
+// Write implement io writer
 func (es *EventStream) Write(b []byte) (int, error) {
-	es.ch <- es.newLogEvent(b)
+	es.Ch <- es.newLogEvent(b)
 	return len(b), nil
-}
-
-func (es *EventStream) Close() error {
-	close(es.ch)
-	return nil
 }

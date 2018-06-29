@@ -1,22 +1,3 @@
-# docker-logger [![Go Report Card](https://goreportcard.com/badge/github.com/zcong1993/docker-logger)](https://goreportcard.com/report/github.com/zcong1993/docker-logger)
-
-> docker container logger collector
-
-## Usage
-
-### cli
-
-```bash
-$ docker-logger
-# custom endpoint
-$ docker-logger -endpoint "your endpoint"
-# ignore container by name
-$ docker-logger -ignore foo
-```
-
-### lib
-
-```go
 package main
 
 import (
@@ -47,9 +28,3 @@ func main() {
 		fmt.Printf("container: %s - level: %s - %s\n", ev.ContainerName, ev.LogLevel, ev.Log)
 	}
 }
-```
-
-
-## License
-
-MIT &copy; zcong1993

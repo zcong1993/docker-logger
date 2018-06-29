@@ -7,8 +7,8 @@ install:
 	@dep ensure
 
 build: generate
-	@echo "====> Build telnetor cli"
-	@go build -o ./bin/docker-logger main.go
+	@echo "====> Build docker logger cli"
+	@go build -o ./bin/docker-logger cmd/main.go
 .PHONY: build
 
 release:
