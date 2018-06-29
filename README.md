@@ -1,4 +1,4 @@
-# docker-logger [![Go Report Card](https://goreportcard.com/badge/github.com/zcong1993/docker-logger)](https://goreportcard.com/report/github.com/zcong1993/docker-logger)
+# docker-logger [![Go Report Card](https://goreportcard.com/badge/github.com/zcong1993/docker-logger)](https://goreportcard.com/report/github.com/zcong1993/docker-logger) [![CircleCI branch](https://img.shields.io/circleci/project/github/zcong1993/docker-logger/master.svg)](https://circleci.com/gh/zcong1993/docker-logger/tree/master)
 
 > docker container logger collector
 
