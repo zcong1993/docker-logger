@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+      # CircleCI Go images available at: https://hub.docker.com/r/circleci/golang/
+      - image: circleci/golang:1.10
+
+    working_directory: /go/src/github.com/zcong1993/docker-logger
+
+    steps:
+      - checkout
+      - run:
+          name: get deps
+          command: |
+            make install
+      - run:
+          name: build
+          command: make build
